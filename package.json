@@ -103,6 +103,9 @@
       }
     },
     "rules": {
+      "object-curly-spacing": "off",
+      "no-trailing-spaces": "off",
+      "react/jsx-tag-spacing": "off",
       "arrow-parens": [
         "error",
         "always"
@@ -225,6 +228,7 @@
     "invariant": "2.2.2",
     "ip": "1.1.5",
     "lodash": "4.17.4",
+    "material-ui": "^1.0.0-beta.18",
     "minimist": "1.2.0",
     "prop-types": "15.5.10",
     "react": "15.6.1",
