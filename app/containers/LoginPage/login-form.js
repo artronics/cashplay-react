@@ -1,7 +1,55 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Card from 'components/Card';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 
-export default function (props) {
+const FormWrapper = styled.div`
+width: 320px;
+`;
+
+const LoginForm = function (props) {
+  const {password, email, login, emailChange, passwordChange} = props;
+
   return (
-    <div>kir</div>
+    <FormWrapper>
+      <Card title={'Login'} sytle={{maxWidth: '320px'}}>
+        <TextField
+          label={'Username/Email'}
+          value={email}
+          onChange={(e) => emailChange(e.target.value)}
+          required
+          fullWidth
+          margin={'normal'}
+        />
+        <TextField
+          label={'Password'}
+          onChange={(p) => passwordChange(p.target.value)}
+          value={password}
+          required
+          margin={'normal'}
+          fullWidth
+          type={'password'}
+        />
+        <Button
+          onClick={login}
+          raised
+          className={'art-full-width'}
+          color={'primary'}
+          style={{marginTop: '20px'}}
+        >login</Button>
+      </Card>
+    </FormWrapper>
   );
-}
+};
+
+LoginForm.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string,
+  emailChange: PropTypes.func,
+  passwordChange: PropTypes.func,
+  login: PropTypes.func.isRequired,
+};
+
+export default LoginForm;
