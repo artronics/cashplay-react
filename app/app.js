@@ -11,6 +11,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { ThemeProvider } from 'styled-components';
+import Theme from 'utils/themes';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 import '!!style-loader!css-loader!../node_modules/font-awesome/css/font-awesome.css';
@@ -49,7 +51,9 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <ThemeProvider theme={Theme}>
+            <App/>
+          </ThemeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

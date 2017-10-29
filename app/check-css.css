@@ -1,11 +1,8 @@
-.sdf{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: red;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: rgb(232, 232, 232);
+.art-nav a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  height: 30px;
 }

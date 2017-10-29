@@ -6,6 +6,8 @@ import Header from 'containers/Header';
 import Nav from 'containers/Nav';
 import Customer from 'containers/Customer';
 import Item from 'containers/Item';
+import Receipt from 'containers/Receipt';
+import Breadcrumb from 'containers/Breadcrumb';
 
 const CashplayWrapper = styled.div`
 display: flex;
@@ -14,7 +16,7 @@ flex-direction: column;
 `;
 const MainContainer = styled.div`
 display: flex;
-background-color: rgb(232,232,232);
+background-color: ${(props) => props.theme.darkBg};
 height: 100%;
 `;
 
@@ -24,8 +26,12 @@ function Cashplay(props) {
       <Route path={'/app'} component={Header}/>
       <MainContainer>
         <Route path={'/app'} component={Nav}/>
-        <Route path={'/app/customer'} component={Customer}/>
-        <Route path={'/app/item'} component={Item}/>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+          <Route path={'/app'} component={Breadcrumb}/>
+          <Route path={'/app/customer'} component={Customer}/>
+          <Route path={'/app/item'} component={Item}/>
+        </div>
+        <Route path={'/app'} component={Receipt}/>
       </MainContainer>
     </CashplayWrapper>
   );
