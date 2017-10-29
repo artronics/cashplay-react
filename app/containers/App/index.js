@@ -4,27 +4,83 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
-import { Switch, Route } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import LoginPage from 'containers/LoginPage';
-import {makeSelectApp} from './selectors';
-import {reducer} from './state';
+import { makeSelectApp } from './selectors';
+import { reducer, retrieveAccountFromStorage } from './state';
+import Cashplay from '../Cashplay/index';
 
-function App() {
-  return (
-    <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
+// eslint-disable-next-line react/prefer-stateless-function
+class App extends React.PureComponent {
 
-        <Route component={NotFoundPage} />
-      </Switch>
-    </div>
-  );
+  componentWillMount() {
+    const {account} = this.props.App;
+    const storageAccount = window.localStorage.getItem('account');
+    if (account.token) {
+      this.loggedIn = true;
+    } else if (!account.token && !storageAccount) {
+      this.loggedIn = false;
+    } else if (!account.token && storageAccount) {
+      this.props.dispatch(retrieveAccountFromStorage(JSON.parse(storageAccount)));
+      this.loggedIn = true;
+    }
+  }
+
+  loggedIn = false;
+
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <CashplayRoute loggedIn={this.loggedIn} path="/app" component={Cashplay}/>
+          <LoginRoute path="/login" loggedIn={this.loggedIn} component={LoginPage}/>
+          <Route component={NotFoundPage}/>
+        </Switch>
+      </div>
+    );
+  }
 }
 
+App.propTypes = {
+  App: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+const LoginRoute = ({component: Component, loggedIn, ...rest}) => (
+  <Route
+    {...rest}
+    render={(props) => (
+      !loggedIn ? (
+        <Component {...props}/>
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/app',
+          }}
+        />
+      )
+    )}
+  />
+);
+const CashplayRoute = ({component: Component, loggedIn, ...rest}) => (
+  <Route
+    {...rest}
+    render={(props) => (
+      loggedIn ? (
+        <Component {...props}/>
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+          }}
+        />
+      )
+    )}
+  />
+);
 
 const mapStateToProps = createStructuredSelector({
   App: makeSelectApp(),
@@ -40,6 +96,7 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({key: 'app', reducer});
 
 export default compose(
+  withRouter,
   withReducer,
   withConnect,
 )(App);

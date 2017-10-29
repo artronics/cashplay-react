@@ -2,9 +2,9 @@ import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Constants
-export const LOGIN = 'essave/Login/LOGIN';
-export const EMAIL_CHANGE = 'essave/Login/EMAIL_CHANGE';
-export const PASSWORD_CHANGE = 'essave/Login/PASSWORD_CHANGE';
+export const LOGIN = 'cashplay/Login/LOGIN';
+export const EMAIL_CHANGE = 'cashplay/Login/EMAIL_CHANGE';
+export const PASSWORD_CHANGE = 'cashplay/Login/PASSWORD_CHANGE';
 
 // Actions
 export function login(email, password) {
