@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
+import messages from 'utils/messages';
 import Card from 'components/Card';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -16,7 +18,7 @@ const LoginForm = function (props) {
     <FormWrapper>
       <Card title={'Login'} sytle={{maxWidth: '320px'}}>
         <TextField
-          label={'Username/Email'}
+          label={<FormattedMessage {...messages.emailOrUsername}/>}
           value={email}
           onChange={(e) => emailChange(e.target.value)}
           required

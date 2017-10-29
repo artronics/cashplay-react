@@ -1,10 +1,10 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-import request from 'utils/request';
+import {post} from 'utils/api';
 import { LOGIN } from './state';
 
 export function* login() {
-  console.log('in saga');
-  yield call(request, 'www.sdkf.com');
+  const account = yield call(post, '/auth/login', {username: 'jalalhosseiny@gmail.com', password: 'secret'});
+  window.localStorage.setItem('account', JSON.stringify(account));
 }
 
 // Individual exports for testing
