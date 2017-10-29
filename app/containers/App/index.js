@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -13,6 +14,13 @@ import { makeSelectApp } from './selectors';
 import { reducer, retrieveAccountFromStorage } from './state';
 import Cashplay from '../Cashplay/index';
 
+const AppWrapper = styled.div`
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+background-color: red;
+`;
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.PureComponent {
 
@@ -33,14 +41,14 @@ class App extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <AppWrapper>
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <CashplayRoute loggedIn={this.loggedIn} path="/app" component={Cashplay}/>
           <LoginRoute path="/login" loggedIn={this.loggedIn} component={LoginPage}/>
           <Route component={NotFoundPage}/>
         </Switch>
-      </div>
+      </AppWrapper>
     );
   }
 }

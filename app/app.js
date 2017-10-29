@@ -4,10 +4,8 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
-
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
-
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,13 +13,11 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
-
+import '!!style-loader!css-loader!../node_modules/font-awesome/css/font-awesome.css';
 // Import root app
 import App from 'containers/App';
-
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
-
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -35,15 +31,12 @@ import '!file-loader?name=[name].[ext]!./images/icon-384x384.png';
 import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
-
 import configureStore from './configureStore';
-
 // Import i18n messages
 import { translationMessages } from './i18n';
-
 // Import CSS reset and Global Styles
 import './global-styles';
+/* eslint-enable import/no-unresolved, import/extensions */
 
 // Create redux store with history
 const initialState = {};
