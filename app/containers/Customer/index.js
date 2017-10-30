@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+import RecentlyAddedCustomers from './RecentlyAddedCustomers';
 import makeSelectCustomer, { reducer } from './state';
 import saga from './saga';
 
@@ -35,9 +36,12 @@ display: flex;
 
 function Customer(props) {
   return (
-    <Card title={'Search Customers'}>
-      <SearchSectionWrapper/>
-    </Card>
+    <div>
+      <Card title={'Search Customers'}>
+        <SearchSectionWrapper/>
+      </Card>
+      <RecentlyAddedCustomers/>
+    </div>
   );
 }
 
