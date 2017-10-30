@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from 'components/Card';
 import { compose } from 'redux';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
@@ -26,10 +27,12 @@ function Cashplay(props) {
       <Route path={'/app'} component={Header}/>
       <MainContainer>
         <Route path={'/app'} component={Nav}/>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+        <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column'}}>
           <Route path={'/app'} component={Breadcrumb}/>
-          <Route path={'/app/customer'} component={Customer}/>
-          <Route path={'/app/item'} component={Item}/>
+          <Card style={{height: '100%', flex: '1'}}>
+            <Route path={'/app/customer'} component={Customer}/>
+            <Route path={'/app/item'} component={Item}/>
+          </Card>
         </div>
         <Route path={'/app'} component={Receipt}/>
       </MainContainer>

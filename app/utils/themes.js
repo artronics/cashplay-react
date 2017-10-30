@@ -5,6 +5,10 @@ const Theme = {
   darkBg: '#e8e8e8',
   darkBgHover: '#e1e1e1',
   darkText: '#6b6b6b',
+  navHeight: '60px',
+  searchInputBorderRadius: '8px',
+  searchInputBorderColor: darkText,
+  searchInputBorderFocusColor: darkText,
 };
 
 export default Theme;

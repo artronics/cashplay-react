@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const BreadcrumbWrapper = styled.div`
-height:35px;
+height:${(props) => props.theme.navHeight};
 background-color: ${(props) => props.theme.darkBg};
 display: flex;
 `;

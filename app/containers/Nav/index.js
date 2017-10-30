@@ -32,6 +32,7 @@ margin: 0px;
 }
 > li {
   width: 100%;
+  height: ${(props) => props.theme.navHeight};
   &:hover {
     background-color: ${(props) => props.theme.darkBgHover};
   }
