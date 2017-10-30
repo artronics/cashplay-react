@@ -9,6 +9,7 @@ const Theme = {
   searchInputBorderRadius: '8px',
   searchInputBorderColor: darkText,
   searchInputBorderFocusColor: darkText,
+  cardTitleToContentMargin: '200px',
 };
 
 export default Theme;

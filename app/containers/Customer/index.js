@@ -10,8 +10,31 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import RecentlyAddedCustomers from './RecentlyAddedCustomers';
-import makeSelectCustomer, { reducer } from './state';
+import makeSelectCustomer, { loadRecentlyAdded, reducer } from './state';
 import saga from './saga';
+
+class Customer extends React.PureComponent {
+  componentWillMount() {
+    this.props.dispatch(loadRecentlyAdded());
+  }
+
+  render() {
+    const {recentlyAdded} = this.props.Customer;
+    return (
+      <div>
+        <Card title={'Search Customers'}>
+          <SearchSectionWrapper/>
+        </Card>
+        <RecentlyAddedCustomers data={recentlyAdded}/>
+      </div>
+    );
+  }
+}
+
+Customer.propTypes = {
+  Customer: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 const SearchSection = ({className}) => (
   <div className={className}>
@@ -30,24 +53,9 @@ const SearchSection = ({className}) => (
 );
 
 const SearchSectionWrapper = styled(SearchSection)`
-margin-top: 20px;
 display: flex;
 `;
 
-function Customer(props) {
-  return (
-    <div>
-      <Card title={'Search Customers'}>
-        <SearchSectionWrapper/>
-      </Card>
-      <RecentlyAddedCustomers/>
-    </div>
-  );
-}
-
-Customer.propTypes = {
-  Customer: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = createStructuredSelector({
   Customer: makeSelectCustomer(),

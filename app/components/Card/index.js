@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MdCard, { CardContent, CardActions } from 'material-ui/Card';
+import MdCard, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+
+const styles = (theme) => ({
+  content: {
+    marginTop: theme.spacing.unit * 2,
+  },
+
+});
 
 const renderTitle = (title) => (
   title ? (
@@ -12,12 +20,14 @@ const renderTitle = (title) => (
 );
 
 function Card(props) {
-  const {children, actions, title} = props;
+  const {children, actions, title, classes} = props;
   return (
     <MdCard>
       <CardContent>
         {renderTitle(title)}
-        {children}
+        <div className={classes.content}>
+          {children}
+        </div>
       </CardContent>
       <CardActions style={{display: 'flex 1', justifyContent: 'flex-end'}}>
         {actions}
@@ -30,6 +40,7 @@ Card.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
   actions: PropTypes.node,
+  classes: PropTypes.object,
 };
 
-export default Card;
+export default withStyles(styles)(Card);

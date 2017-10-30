@@ -27,9 +27,9 @@ function Cashplay(props) {
       <Route path={'/app'} component={Header}/>
       <MainContainer>
         <Route path={'/app'} component={Nav}/>
-        <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column'}}>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
           <Route path={'/app'} component={Breadcrumb}/>
-          <Card style={{height: '100%', flex: '1'}}>
+          <Card>
             <Route path={'/app/customer'} component={Customer}/>
             <Route path={'/app/item'} component={Item}/>
           </Card>

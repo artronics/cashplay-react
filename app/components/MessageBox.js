@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Typography from 'material-ui/Typography';
-import InfoIcon from 'material-ui-icons/InfoOutline';
 import { withStyles } from 'material-ui/styles';
 
 const styles = (theme) => ({
@@ -38,7 +37,7 @@ function MessageBox(props) {
   return (
     <MessageBoxWrapper>
       <div>
-        <Typography type={'messagebox'} component={'h2'}>
+        <Typography type={'title'} component={'h2'}>
           {renderIcon(icon)}{props.children}
         </Typography>
       </div>

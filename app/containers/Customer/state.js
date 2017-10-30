@@ -3,6 +3,8 @@ import { createSelector } from 'reselect';
 
 // Constant
 export const QUERY_CHANGED = 'cashplay/Customer/QUERY_CHANGED';
+export const LOAD_RECENTLY_ADDED = 'cashplay/Customer/LOAD_RECENTLY_ADDED';
+export const LOAD_RECENTLY_ADDED_SUCCESSFUL = 'cashplay/Customer/LOAD_RECENTLY_ADDED_SUCCESSFUL';
 
 // Actions
 export function queryChanged(query) {
@@ -12,9 +14,24 @@ export function queryChanged(query) {
   };
 }
 
+export function loadRecentlyAdded() {
+  return {
+    type: LOAD_RECENTLY_ADDED,
+  };
+}
+
+export function loadRecentlyAddedSuccessful(recentlyAdded) {
+  return {
+    type: LOAD_RECENTLY_ADDED_SUCCESSFUL,
+    recentlyAdded,
+  };
+}
+
+
 // Reducer
 const initialState = fromJS({
   query: '',
+  recentlyAdded: [],
 });
 
 export function reducer(state = initialState, action) {
@@ -22,6 +39,9 @@ export function reducer(state = initialState, action) {
     case QUERY_CHANGED:
       return state
         .set('query', action.query);
+    case LOAD_RECENTLY_ADDED_SUCCESSFUL:
+      return state
+        .set('recentlyAdded', action.recentlyAdded);
     default:
       return state;
   }
