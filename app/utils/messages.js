@@ -21,4 +21,8 @@ export default defineMessages({
     id: 'password',
     defaultMessage: 'Password',
   },
+  networkError: {
+    id: 'networkError',
+    defaultMessage: 'Connection Error! Make sure you are connected to the Internet.',
+  },
 });

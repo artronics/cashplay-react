@@ -1,5 +1,17 @@
 import { fromJS } from 'immutable';
-import { ACCOUNT, RETRIEVE_ACCOUNT_FROM_STORAGE } from './constants';
+import { ACCOUNT, DISMISS_NETWORK_ERROR, NETWORK_ERROR, RETRIEVE_ACCOUNT_FROM_STORAGE, } from './constants';
+
+export function networkError() {
+  return {
+    type: NETWORK_ERROR,
+  };
+}
+
+export function dismissNetworkError() {
+  return {
+    type: DISMISS_NETWORK_ERROR,
+  };
+}
 
 export function account(acc) {
   return {
@@ -16,11 +28,18 @@ export function retrieveAccountFromStorage(account) {
 }
 
 const initialState = fromJS({
+  networkError: false,
   account: {},
 });
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
+    case NETWORK_ERROR:
+      return state
+        .set('networkError', true);
+    case DISMISS_NETWORK_ERROR:
+      return state
+        .set('networkError', false);
     case ACCOUNT:
       return state
         .set('account', action.account);

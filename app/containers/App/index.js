@@ -6,12 +6,15 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
+import Snackbar from 'material-ui/Snackbar';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import LoginPage from 'containers/LoginPage';
+import messages from 'utils/messages';
 import { makeSelectApp } from './selectors';
-import { reducer, retrieveAccountFromStorage } from './state';
+import { dismissNetworkError, reducer, retrieveAccountFromStorage } from './state';
 import Cashplay from '../Cashplay/index';
 
 const AppWrapper = styled.div`
@@ -21,6 +24,12 @@ display: flex;
 flex-direction: column;
 background-color: red;
 `;
+
+const networkErrorMsg = (
+  <span style={{color: 'red'}}><i className="fa fa-warning"></i>
+    <FormattedMessage {...messages.networkError} /></span>
+);
+
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.PureComponent {
 
@@ -40,6 +49,7 @@ class App extends React.PureComponent {
   loggedIn = false;
 
   render() {
+    const {networkError} = this.props.App;
     return (
       <AppWrapper>
         <Switch>
@@ -48,6 +58,11 @@ class App extends React.PureComponent {
           <LoginRoute path="/login" loggedIn={this.loggedIn} component={LoginPage}/>
           <Route component={NotFoundPage}/>
         </Switch>
+        <Snackbar
+          open={networkError}
+          message={networkErrorMsg}
+          onRequestClose={() => this.props.dispatch(dismissNetworkError())}
+        />
       </AppWrapper>
     );
   }
@@ -56,6 +71,7 @@ class App extends React.PureComponent {
 App.propTypes = {
   App: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  networkError: React.PropTypes.bool,
 };
 const LoginRoute = ({component: Component, loggedIn, ...rest}) => (
   <Route

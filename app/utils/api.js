@@ -1,7 +1,8 @@
 import request from 'utils/request';
 import { call, put, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { makeSelectAccount } from '../containers/App/selectors';
+import { networkError } from 'containers/App/state';
+import { makeSelectAccount } from 'containers/App/selectors';
 
 export const baseUrl = 'http://localhost:8080/api';
 const options = {
@@ -45,9 +46,9 @@ function* get(url) {
       },
     };
 
-    return request(`${baseUrl + url}`, getOpt);
+    return yield call(request, `${baseUrl + url}`, getOpt);
   } catch (error) {
-    console.log(error);
+    yield put(networkError());
     throw error;
   }
 }
