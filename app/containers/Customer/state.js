@@ -30,6 +30,11 @@ export function loadRecentlyAddedSuccessful(recentlyAdded) {
 
 // Reducer
 const initialState = fromJS({
+  tabs: [{
+    id: 'customers',
+    text: 'Customers',
+    to: '/app/customers',
+  }],
   query: '',
   recentlyAdded: [],
 });

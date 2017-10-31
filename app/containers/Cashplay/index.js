@@ -1,14 +1,12 @@
 import React from 'react';
-import Card from 'components/Card';
 import { compose } from 'redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from 'containers/Header';
 import Nav from 'containers/Nav';
 import Customer from 'containers/Customer';
 import Item from 'containers/Item';
 import Receipt from 'containers/Receipt';
-import Breadcrumb from 'containers/Breadcrumb';
 
 const CashplayWrapper = styled.div`
 display: flex;
@@ -27,13 +25,10 @@ function Cashplay(props) {
       <Route path={'/app'} component={Header}/>
       <MainContainer>
         <Route path={'/app'} component={Nav}/>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
-          <Route path={'/app'} component={Breadcrumb}/>
-          <Card>
-            <Route path={'/app/customers'} component={Customer}/>
-            <Route path={'/app/items'} component={Item}/>
-          </Card>
-        </div>
+        <Switch>
+          <Route path={'/app/customers'} component={Customer}/>
+          <Route path={'/app/items'} component={Item}/>
+        </Switch>
         <Route path={'/app'} component={Receipt}/>
       </MainContainer>
     </CashplayWrapper>
