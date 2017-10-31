@@ -30,8 +30,8 @@ function Cashplay(props) {
         <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
           <Route path={'/app'} component={Breadcrumb}/>
           <Card>
-            <Route path={'/app/customer'} component={Customer}/>
-            <Route path={'/app/item'} component={Item}/>
+            <Route path={'/app/customers'} component={Customer}/>
+            <Route path={'/app/items'} component={Item}/>
           </Card>
         </div>
         <Route path={'/app'} component={Receipt}/>

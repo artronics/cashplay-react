@@ -15,8 +15,8 @@ const NavItem = (to, text, icon) => (
 function Nav(props) {
   return (
     <NavWrapper>
-      {NavItem('/app/customer', 'Customers', 'user')}
-      {NavItem('/app/item', 'Items', 'laptop')}
+      {NavItem('/app/customers', 'Customers', 'user')}
+      {NavItem('/app/items', 'Items', 'laptop')}
     </NavWrapper>
   );
 }
