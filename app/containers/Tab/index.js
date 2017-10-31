@@ -10,7 +10,28 @@ width: 100%;
 display: flex;
 flex-direction: column;
 `;
-const withTabs = (propsName) => (WrappedComponent) =>
+
+// const convertTabsToArray = (tabs) => {
+//   const arr = [];
+//   Object.keys(tabs).forEach((t) => {
+//     if (tabs[t]) {
+//       arr.push({id: t, ...tabs[t]});
+//     }
+//   });
+//
+//   return arr;
+// };
+const createTabsArray = (tabs, tabsObj) => {
+  const arr = [];
+  tabs.forEach((t) => {
+    if (tabsObj[t]) {
+      arr.push({id: t, ...tabsObj[t]});
+    }
+  });
+
+  return arr;
+};
+const withTabs = (propsName) => (tabsArr) => (WrappedComponent) =>
   class TabsHoc extends React.PureComponent {
     render() {
       const {tabs} = this.props[propsName];
@@ -18,7 +39,7 @@ const withTabs = (propsName) => (WrappedComponent) =>
       return (
         <TabsWrapper>
           <Tabs>
-            {tabs.map((t) => (<TabItem key={t.id} to={t.to}>{t.text}</TabItem>))}
+            {createTabsArray(tabs, tabsArr).map((t) => (<TabItem key={t.id} to={t.to}>{t.text}</TabItem>))}
           </Tabs>
           <Card>
             <WrappedComponent {...this.props}/>
@@ -29,11 +50,7 @@ const withTabs = (propsName) => (WrappedComponent) =>
 
     static propTypes = {
       propsName: PropTypes.objectOf(PropTypes.shape({
-        tabs: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired,
-          to: PropTypes.string.isRequired,
-        }))).isRequired,
+        tabs: PropTypes.array.isRequired,
       })),
     };
   };

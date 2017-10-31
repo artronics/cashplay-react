@@ -1,10 +1,14 @@
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 
+import { Customer, tabs } from './customer';
+
 // Constant
 export const QUERY_CHANGED = 'cashplay/Customer/QUERY_CHANGED';
 export const LOAD_RECENTLY_ADDED = 'cashplay/Customer/LOAD_RECENTLY_ADDED';
 export const LOAD_RECENTLY_ADDED_SUCCESSFUL = 'cashplay/Customer/LOAD_RECENTLY_ADDED_SUCCESSFUL';
+export const NEW_CUSTOMER_TAB = 'cashplay/Customer/NEW_CUSTOMER_TAB';
+export const UPDATE_NEW_CUSTOMER = 'cashplay/Customer/UPDATE_NEW_CUSTOMER';
 
 // Actions
 export function queryChanged(query) {
@@ -27,16 +31,25 @@ export function loadRecentlyAddedSuccessful(recentlyAdded) {
   };
 }
 
+export function newCustomerTab() {
+  return {
+    type: NEW_CUSTOMER_TAB,
+  };
+}
+
+export function updateNewCustomer(customer) {
+  return {
+    type: UPDATE_NEW_CUSTOMER,
+    customer,
+  };
+}
 
 // Reducer
 const initialState = fromJS({
-  tabs: [{
-    id: 'customers',
-    text: 'Customers',
-    to: '/app/customers',
-  }],
+  tabs: ['home'],
   query: '',
   recentlyAdded: [],
+  newCustomer: new Customer(),
 });
 
 export function reducer(state = initialState, action) {
@@ -47,6 +60,15 @@ export function reducer(state = initialState, action) {
     case LOAD_RECENTLY_ADDED_SUCCESSFUL:
       return state
         .set('recentlyAdded', action.recentlyAdded);
+    case NEW_CUSTOMER_TAB:
+      if (state.get('tabs').find((t) => t === 'new')) {
+        return state;
+      }
+      return state
+        .update('tabs', (t) => t.push('new'));
+    case UPDATE_NEW_CUSTOMER:
+      return state
+        .set('newCustomer', action.customer);
     default:
       return state;
   }
