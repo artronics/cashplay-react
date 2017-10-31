@@ -51,7 +51,7 @@ module.exports = {
     message: 'Do you want to load resources asynchronously?',
   }],
   actions: (data) => {
-    // Generate index.js and index.test.js
+    // Generate Table.js and Table.test.js
     var componentTemplate; // eslint-disable-line no-var
 
     switch (data.type) {
@@ -66,12 +66,12 @@ module.exports = {
 
     const actions = [{
       type: 'add',
-      path: '../../app/containers/{{properCase name}}/index.js',
+      path: '../../app/containers/{{properCase name}}/Table.js',
       templateFile: componentTemplate,
       abortOnFail: true,
     }, {
       type: 'add',
-      path: '../../app/containers/{{properCase name}}/tests/index.test.js',
+      path: '../../app/containers/{{properCase name}}/tests/Table.test.js',
       templateFile: './container/test.js.hbs',
       abortOnFail: true,
     }];

@@ -11,16 +11,6 @@ display: flex;
 flex-direction: column;
 `;
 
-// const convertTabsToArray = (tabs) => {
-//   const arr = [];
-//   Object.keys(tabs).forEach((t) => {
-//     if (tabs[t]) {
-//       arr.push({id: t, ...tabs[t]});
-//     }
-//   });
-//
-//   return arr;
-// };
 const createTabsArray = (tabs, tabsObj) => {
   const arr = [];
   tabs.forEach((t) => {
