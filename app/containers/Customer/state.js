@@ -49,7 +49,7 @@ const initialState = fromJS({
   tabs: ['home'],
   query: '',
   recentlyAdded: [],
-  newCustomer: new Customer(),
+  newCustomer: {firstName: 'jalal', lastName: 'hos'},
 });
 
 export function reducer(state = initialState, action) {
