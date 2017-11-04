@@ -4,7 +4,9 @@ import { push } from 'react-router-redux';
 import { networkError } from 'containers/App/state';
 import { makeSelectAccount } from 'containers/App/selectors';
 
-export const baseUrl = 'https://api.pawnfield.co.uk/api';
+const isHttps = window.location.protocol === 'https:';
+export const baseUrl = isHttps ? 'https://api.pawnfield.co.u/api' : 'http://localhost:8080/api';
+
 const options = {
   headers: {
     Accept: 'application/json',

@@ -14,6 +14,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { ThemeProvider } from 'styled-components';
 import Theme from 'utils/themes';
 import createHistory from 'history/createBrowserHistory';
+import { createMuiTheme } from 'material-ui/styles';
 import 'sanitize.css/sanitize.css';
 import '!!style-loader!css-loader!../node_modules/font-awesome/css/font-awesome.css';
 // Import root app
@@ -46,12 +47,15 @@ const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+let theme = createMuiTheme();
+theme = {app: Theme, mui: theme};
+
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <ThemeProvider theme={Theme}>
+          <ThemeProvider theme={theme}>
             <App/>
           </ThemeProvider>
         </ConnectedRouter>
