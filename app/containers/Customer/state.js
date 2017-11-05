@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 
-import { Customer, tabs } from './customer';
+import { initialCustomer } from './customer';
 
 // Constant
 export const QUERY_CHANGED = 'cashplay/Customer/QUERY_CHANGED';
@@ -49,7 +49,7 @@ const initialState = fromJS({
   tabs: ['home'],
   query: '',
   recentlyAdded: [],
-  newCustomer: {firstName: 'jalal', lastName: 'hos'},
+  newCustomer: initialCustomer,
 });
 
 export function reducer(state = initialState, action) {

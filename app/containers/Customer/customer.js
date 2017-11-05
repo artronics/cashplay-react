@@ -11,12 +11,10 @@ export const columns = [
   },
 ];
 
-export class Customer {
-  constructor(firsName = '', lastName = '') {
-    this.firstName = firsName;
-    this.lastName = lastName;
-  }
-}
+export const initialCustomer = {
+  firstName: '',
+  lastName: '',
+};
 
 export const tabs = {
   home: {
@@ -27,6 +25,5 @@ export const tabs = {
   new: {
     text: 'New Customer',
     to: '/app/customers/new',
-    data: new Customer(),
   },
 };
