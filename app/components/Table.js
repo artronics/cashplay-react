@@ -41,7 +41,7 @@ class Table extends React.Component {
     const {selected} = this.state;
     return (
       <Paper>
-        <Toolbar selected={selected}/>
+        <Toolbar selected={selected} {...this.props}/>
         <MdTable>
           <TableHead>
             {this.headers()}

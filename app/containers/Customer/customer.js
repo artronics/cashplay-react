@@ -1,4 +1,4 @@
-import { required } from 'utils/validators';
+import { email, mobile, required } from 'utils/validators';
 
 export const columns = [
   {
@@ -20,6 +20,9 @@ export const initialCustomer = {
 
 export const validation = {
   firstName: [required('First Name')],
+  lastName: [required('Last Name')],
+  mobile: [mobile],
+  email: [email],
 };
 
 export const tabs = {

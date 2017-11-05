@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MdCard, { CardActions, CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
+import Title from 'components/Title';
 import { withStyles } from 'material-ui/styles';
 
 const styles = (theme) => ({
@@ -13,9 +13,9 @@ const styles = (theme) => ({
 
 const renderTitle = (title) => (
   title ? (
-    <Typography type="headline" component="h2">
+    <Title>
       {title}
-    </Typography>
+    </Title>
   ) : (null)
 );
 

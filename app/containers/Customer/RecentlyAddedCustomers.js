@@ -5,8 +5,20 @@ import MessageBox from 'components/MessageBox';
 import Table from 'components/Table';
 import { columns } from './customer';
 
+const refresh = () => (console.log('refresh pressed'));
+const delete_ = () => (console.log('delete pressed'));
+const edit = () => (console.log('edit pressed'));
+const view = () => (console.log('view pressed'));
 const renderTable = (customers) => (
-  <Table data={customers} columns={columns} onRowSelection={()=>{}}/>
+  <Table
+    data={customers}
+    columns={columns}
+    refresh={refresh}
+    delete_={delete_}
+    view={view}
+    edit={edit}
+    onRowSelection={() => {}}
+  />
 );
 
 const showCustomers = (customers) => !customers || customers.length === 0

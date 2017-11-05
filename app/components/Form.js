@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { Field } from 'redux-form/immutable';
 import { TextField } from 'redux-form-material-ui';
 import Typography from 'material-ui/Typography';
-import Card from 'components/Card';
+import Toolbar from 'components/Toolbar';
+import Paper from 'material-ui/Paper';
 
 const getKey = (child, index) => child.props.name || index;
 
@@ -85,14 +86,16 @@ const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
 const Form = (props) => {
   const {children, title} = props;
   return (
-    <Card title={title}>
+    <Paper>
+      <Toolbar selected={1} title={title}/>
       <FormWrapper>
         {children}
       </FormWrapper>
-    </Card>
+    </Paper>
   );
 };
 Form.propTypes = {

@@ -27,8 +27,8 @@ class NewCustomerForm extends React.PureComponent {
           <FormSection>
             <FormInput required label={'First Name'} name={'firstName'} validate={validation.firstName}/>
             <FormInput label={'Last Name'} name={'lastName'}/>
-            <FormInput label={'Mobile Number'} name={'mobile'}/>
-            <FormInput label={'email'} name={'email'}/>
+            <FormInput label={'Mobile Number'} name={'mobile'} validate={validation.mobile}/>
+            <FormInput label={'email'} name={'email'} validate={validation.email}/>
           </FormSection>
 
         </FormSection>
