@@ -36,4 +36,10 @@ injectGlobal`
   a:link {
     text-decoration: none !important;
   }
+  .art-capitalize{
+    text-transform: capitalize;
+  }
+  .art-capitalize-input input{
+    text-transform: capitalize;
+  }
 `;

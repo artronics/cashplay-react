@@ -9,12 +9,14 @@ import Paper from 'material-ui/Paper';
 
 const getKey = (child, index) => child.props.name || index;
 
-const FormInput = ({name, label, ...custom}) => (
-  <Field name={name} label={label} component={TextField} fullWidth margin={'normal'} {...custom}/>
+const FormInput = ({name, label, capitalize, ...custom}) => (
+  <Field name={name} className={`${capitalize ? 'art-capitalize-input' : ''}`} label={label} component={TextField}
+         fullWidth margin={'normal'} {...custom}/>
 );
 FormInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
+  capitalize: PropTypes.bool,
 };
 
 const FormSectionWrapper = styled.div`
@@ -60,6 +62,7 @@ FormSection.propTypes = {
 
 const FormActionsWrapper = styled.div`
   margin-top: ${(props) => props.theme.mui.spacing.unit * 5}px;
+  margin-bottom: ${(props) => props.theme.mui.spacing.unit * 2}px;
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;

@@ -34,6 +34,10 @@ function* getResource(name) {
   return yield call(get, `/${name}`);
 }
 
+function* createResource(name, resource) {
+  return yield call(post, `/${name}`, resource);
+}
+
 function* get(url) {
   try {
     let token = yield call(checkAuth);
@@ -55,19 +59,32 @@ function* get(url) {
   }
 }
 
-const post = function (url, body) {
-  const postOpt = {
-    ...options,
-    method: 'POST',
-    body: JSON.stringify(body),
-  };
+function* post(url, body) {
+  try {
+    let token = yield call(checkAuth);
+    token = `Bearer ${token}`;
 
-  return request(`${baseUrl + url}`, postOpt);
-};
+    const postOpt = {
+      ...options,
+      method: 'POST',
+      headers: {
+        ...options.headers,
+        authorization: token,
+      },
+      body: JSON.stringify(body),
+    };
+
+    return yield call(request, `${baseUrl + url}`, postOpt);
+  } catch (error) {
+    yield put(networkError());
+    throw error;
+  }
+}
 
 export {
   get,
   post,
   getResource,
+  createResource,
 };
 

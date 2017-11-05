@@ -9,6 +9,8 @@ export const LOAD_RECENTLY_ADDED = 'cashplay/Customer/LOAD_RECENTLY_ADDED';
 export const LOAD_RECENTLY_ADDED_SUCCESSFUL = 'cashplay/Customer/LOAD_RECENTLY_ADDED_SUCCESSFUL';
 export const NEW_CUSTOMER_TAB = 'cashplay/Customer/NEW_CUSTOMER_TAB';
 export const UPDATE_NEW_CUSTOMER = 'cashplay/Customer/UPDATE_NEW_CUSTOMER';
+export const SAVE_NEW_CUSTOMER = 'cashplay/Customer/SAVE_NEW_CUSTOMER';
+
 
 // Actions
 export function queryChanged(query) {
@@ -40,6 +42,13 @@ export function newCustomerTab() {
 export function updateNewCustomer(customer) {
   return {
     type: UPDATE_NEW_CUSTOMER,
+    customer,
+  };
+}
+
+export function saveNewCustomer(customer) {
+  return {
+    type: SAVE_NEW_CUSTOMER,
     customer,
   };
 }

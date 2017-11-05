@@ -14,8 +14,10 @@ export const columns = [
 ];
 
 export const initialCustomer = {
-  firstName: '',
-  lastName: '',
+  firstName: 'jalal',
+  lastName: 'hoss',
+  mobile: '3892',
+  email: 'kir@kir.coo',
 };
 
 export const validation = {

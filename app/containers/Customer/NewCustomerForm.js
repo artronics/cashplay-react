@@ -6,7 +6,7 @@ import { getFormValues, reduxForm } from 'redux-form/immutable';
 import { Form, FormActions, FormInput, FormSection } from 'components/Form';
 import PickPickerBox from 'components/PicPickerBox';
 import Button from 'material-ui/Button';
-import { updateNewCustomer } from './state';
+import { saveNewCustomer, updateNewCustomer } from './state';
 import { validation } from './customer';
 
 class NewCustomerForm extends React.PureComponent {
@@ -17,7 +17,13 @@ class NewCustomerForm extends React.PureComponent {
     }
   }
 
+  onSave = () => {
+    const {dispatch, formValues} = this.props;
+    dispatch(saveNewCustomer(formValues.toJS()));
+  };
   render() {
+    const {dispatch} = this.props;
+
     return (
       <Form title={'New Customer'}>
         <FormSection title={'kir'} columns={2}>
@@ -25,15 +31,15 @@ class NewCustomerForm extends React.PureComponent {
             <PickPickerBox/>
           </FormSection>
           <FormSection>
-            <FormInput required label={'First Name'} name={'firstName'} validate={validation.firstName}/>
-            <FormInput label={'Last Name'} name={'lastName'}/>
+            <FormInput required capitalize label={'First Name'} name={'firstName'} validate={validation.firstName}/>
+            <FormInput required label={'Last Name'} name={'lastName'} validate={validation.lastName}/>
             <FormInput label={'Mobile Number'} name={'mobile'} validate={validation.mobile}/>
             <FormInput label={'email'} name={'email'} validate={validation.email}/>
           </FormSection>
 
         </FormSection>
         <FormActions>
-          <Button raised color={'primary'} name={'save'}>Save</Button>
+          <Button raised color={'primary'} name={'save'} onClick={this.onSave}>Save</Button>
           <Button name={'cancel'}>Cancel</Button>
         </FormActions>
       </Form>
