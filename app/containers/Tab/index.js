@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Card from 'components/Card';
 import { TabItem, Tabs } from 'components/Tab';
 
 const TabsWrapper = styled.div`
@@ -21,6 +20,11 @@ const createTabsArray = (tabs, tabsObj) => {
 
   return arr;
 };
+const TabContentWrapper = styled.div`
+  height: 100%;
+  overflow-y: scroll;
+  padding: 2px;
+`;
 const withTabs = (propsName) => (tabsArr) => (WrappedComponent) =>
   class TabsHoc extends React.PureComponent {
     render() {
@@ -31,9 +35,9 @@ const withTabs = (propsName) => (tabsArr) => (WrappedComponent) =>
           <Tabs>
             {createTabsArray(tabs, tabsArr).map((t) => (<TabItem key={t.id} to={t.to}>{t.text}</TabItem>))}
           </Tabs>
-          <Card>
+          <TabContentWrapper>
             <WrappedComponent {...this.props}/>
-          </Card>
+          </TabContentWrapper>
         </TabsWrapper>
       );
     }

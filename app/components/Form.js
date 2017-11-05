@@ -6,6 +6,8 @@ import { TextField } from 'redux-form-material-ui';
 import Typography from 'material-ui/Typography';
 import Card from 'components/Card';
 
+const getKey = (child, index) => child.props.name || index;
+
 const FormInput = ({name, label, ...custom}) => (
   <Field name={name} label={label} component={TextField} fullWidth margin={'normal'} {...custom}/>
 );
@@ -19,24 +21,31 @@ const FormSectionWrapper = styled.div`
 const FormSectionInputWrapper = styled.div`
   padding: 0 ${(props) => props.theme.mui.spacing.unit * 2}px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
   > div {
-    width: ${(props) => 100 / props.columns}%;
-    margin-right: 10%;
+    flex-basis: ${(props) => (100 / props.columns) - 5}%;
   }
 `;
 const FormSectionTitle = styled(Typography)`
-  color: ${(props) => props.theme.app.darkText};
-  padding: 0 ${(props) => props.theme.mui.spacing.unit * 1}px;
+  padding-left: ${(props) => props.theme.mui.spacing.unit * 1}px;
+  padding-top: ${(props) => props.theme.mui.spacing.unit * 6}px;
+  color: ${(props) => props.theme.mui.palette.grey['700']}!important;
 `;
 const FormSection = (props) => {
   const {children, title, columns = 1} = props;
   const renderTitle = (t) => (t ? (
-    <FormSectionTitle component={'h3'} type={'subheading'}>{t}</FormSectionTitle>) : null);
+    <FormSectionTitle className={'kir'} component={'h3'} type={'subheading'}>{t}</FormSectionTitle>) : null);
+  const renderChildren = (com) => com.map
+    ? com.map((c, i) => (<div key={getKey(c, i)}>{c}</div>))
+    : (<div>{com}</div>);
   return (
     <FormSectionWrapper>
       {renderTitle(title)}
       <FormSectionInputWrapper columns={columns}>
-        {children.map((c) => (<div key={c.props.name}>{c}</div>))}
+        {renderChildren(children)}
       </FormSectionInputWrapper>
     </FormSectionWrapper>
   );
@@ -59,9 +68,12 @@ const FormActionsWrapper = styled.div`
 `;
 const FormActions = (props) => {
   const {children} = props;
+  const renderChildren = (com) => com.map
+    ? com.map((c, i) => (<div key={getKey(c, i)}>{c}</div>)).reverse()
+    : (<div>{com}</div>);
   return (
     <FormActionsWrapper>
-      {children.map((c) => (<div key={c.props.name}>{c}</div>)).reverse()}
+      {renderChildren(children)}
     </FormActionsWrapper>
   );
 };
