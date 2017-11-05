@@ -23,7 +23,6 @@ function Nav(props) {
 
 const NavWrapper = styled.ul`
 width: 15%;
-color: ${(props) => props.theme.darkBg};
 list-style: none;
 padding: 0px;
 margin: 0px;
@@ -32,16 +31,20 @@ margin: 0px;
 }
 > li {
   width: 100%;
-  height: ${(props) => props.theme.navHeight};
   &:hover {
-    background-color: ${(props) => props.theme.darkBgHover};
+    background-color: ${(props) => props.theme.app.navHoverBg};
+  }
+  > .active {
+    background-color: ${(props) => props.theme.app.navHoverBg};
   }
   > a {
+    height: ${(props) => props.theme.app.navHeight};
     display: block;
     width: 100%;
     padding: 20px 0px 10px 40px;
+    color: ${(props) => props.theme.app.navText};
     &:visited {
-      color: ${(props) => props.theme.darkText};
+      color: ${(props) => props.theme.app.navText};
     }
     > i {
       margin-right: 20px;

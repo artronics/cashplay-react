@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MdCard, { CardActions, CardContent } from 'material-ui/Card';
-import Title from 'components/Title';
 import { withStyles } from 'material-ui/styles';
+import Toolbar from 'components/Toolbar';
 
 const styles = (theme) => ({
   content: {
@@ -11,20 +11,16 @@ const styles = (theme) => ({
 
 });
 
-const renderTitle = (title) => (
-  title ? (
-    <Title>
-      {title}
-    </Title>
-  ) : (null)
+const renderTitle = (props) => (
+  <Toolbar {...props}/>
 );
 
 function Card(props) {
-  const {children, actions, title, classes} = props;
+  const {children, actions, classes} = props;
   return (
     <MdCard>
       <CardContent>
-        {renderTitle(title)}
+        {renderTitle(props)}
         <div className={classes.content}>
           {children}
         </div>
@@ -37,7 +33,6 @@ function Card(props) {
 }
 
 Card.propTypes = {
-  title: PropTypes.string,
   children: PropTypes.node,
   actions: PropTypes.node,
   classes: PropTypes.object,

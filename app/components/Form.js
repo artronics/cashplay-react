@@ -4,14 +4,20 @@ import styled from 'styled-components';
 import { Field } from 'redux-form/immutable';
 import { TextField } from 'redux-form-material-ui';
 import Typography from 'material-ui/Typography';
-import Toolbar from 'components/Toolbar';
-import Paper from 'material-ui/Paper';
+import Card from 'components/Card';
 
 const getKey = (child, index) => child.props.name || index;
 
 const FormInput = ({name, label, capitalize, ...custom}) => (
-  <Field name={name} className={`${capitalize ? 'art-capitalize-input' : ''}`} label={label} component={TextField}
-         fullWidth margin={'normal'} {...custom}/>
+  <Field
+    name={name}
+    className={`${capitalize ? 'art-capitalize-input' : ''}`}
+    label={label}
+    component={TextField}
+    fullWidth
+    margin={'normal'}
+    {...custom}
+  />
 );
 FormInput.propTypes = {
   name: PropTypes.string,
@@ -93,12 +99,11 @@ const FormWrapper = styled.form`
 const Form = (props) => {
   const {children, title} = props;
   return (
-    <Paper>
-      <Toolbar selected={1} title={title}/>
+    <Card title={title} {...props}>
       <FormWrapper>
         {children}
       </FormWrapper>
-    </Paper>
+    </Card>
   );
 };
 Form.propTypes = {

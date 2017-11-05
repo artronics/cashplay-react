@@ -22,11 +22,9 @@ class NewCustomerForm extends React.PureComponent {
     dispatch(saveNewCustomer(formValues.toJS()));
   };
   render() {
-    const {dispatch} = this.props;
-
     return (
-      <Form title={'New Customer'}>
-        <FormSection title={'kir'} columns={2}>
+      <Form title={'New Customer'} {...this.props}>
+        <FormSection columns={2}>
           <FormSection>
             <PickPickerBox/>
           </FormSection>

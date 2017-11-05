@@ -14,6 +14,7 @@ import { withStyles } from 'material-ui/styles';
 const toolbarStyles = (theme) => ({
   root: {
     paddingRight: 2,
+    paddingLeft: 0,
     marginTop: theme.spacing.unit * 2,
   },
   spacer: {

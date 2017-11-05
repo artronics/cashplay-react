@@ -15,7 +15,7 @@ flex-direction: column;
 `;
 const MainContainer = styled.div`
 display: flex;
-background-color: ${(props) => props.theme.darkBg};
+background-color: ${(props) => props.theme.app.darkBg};
 height: 100%;
 `;
 

@@ -4,23 +4,33 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const TabsWrapper = styled.nav`
-min-height:${(props) => props.theme.navHeight};
-max-height:${(props) => props.theme.navHeight};
-background-color: ${(props) => props.theme.darkBg};
+min-height:${(props) => props.theme.app.navHeight};
+max-height:${(props) => props.theme.app.navHeight};
+background-color: ${(props) => props.theme.app.darkBg};
 `;
 
 const UlWrapper = styled.ul`
 display: flex;
-padding: 0;
+padding-left: 0px;
 justify-content: flex-start;
 > li {
   display: flex;
   align-items: center;
-  height: 60px;
-  &:first-child {
-    padding-left: 0;
+  height: ${(props) => props.theme.app.navHeight};
+  &:first-child > a{
+    padding-left: ${(props) => props.theme.mui.spacing.unit}px;
   }
-  padding: 0 20px;
+  > .active {
+    background-color: red;
+  }
+  > a {
+    padding: 0 20px;
+    height: ${(props) => props.theme.app.navHeight};
+    color: ${(props) => props.theme.app.navText};
+    &:visited {
+      color: ${(props) => props.theme.app.navText};
+    }
+  }
 }
   
 `;
@@ -48,7 +58,7 @@ function TabItem(props) {
   );
 }
 
-const renderLink = (text, to) => (<NavLink to={to}>{text}</NavLink>);
+const renderLink = (text, to) => (<NavLink exact to={to}>{text}</NavLink>);
 
 TabItem.propTypes = {
   children: PropTypes.node,

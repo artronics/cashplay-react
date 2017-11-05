@@ -22,9 +22,7 @@ class NewCustomer extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <NewCustomerForm {...this.props}/>
-      </div>
+      <NewCustomerForm {...this.props}/>
     );
   }
 }
